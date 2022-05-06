@@ -1,6 +1,12 @@
 console.log('Hola mundo')
 
-let lista = []
+
+
+let lista = JSON.parse(localStorage.getItem('lista-tareas')) || []
+
+console.log(lista)
+
+renderList(lista)
 
 function crearTarea() {
   const tituloTarea = document.getElementById('titulo').value
@@ -13,6 +19,7 @@ function crearTarea() {
   })
 
   console.log(lista)
+  localStorage.setItem('lista-tareas', JSON.stringify(lista))
   renderList(lista)
 }
 
@@ -39,10 +46,8 @@ function renderList(tareas) {
 
 function borrarTarea(pos) {
   lista.splice(pos, 1)
+  localStorage.setItem('lista-tareas', JSON.stringify(lista))
   renderList(lista)
 }
 
-// const botonGuardar = document.getElementById('guardar')
-// botonGuardar.addEventListener('click', function (e) {
-//   crearTarea()
-// })
+// renderList(lista)
